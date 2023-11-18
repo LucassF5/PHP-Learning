@@ -17,13 +17,19 @@ $notas =[
 
 function ordenaNotas(array $nota1, array $nota2): int
 {   
-    if ($nota1["nota"]>$nota2["nota"]){
-        return -1;
-    } else if ($nota1["nota"]<$nota2["nota"]){
-        return 1;
-    }
+    return $nota1["nota"] <=> $nota2["nota"];
+    //Operador de nave espacial
+    //Faz a mesma coisa que a função abaixo, mas ordena por ordem crescente
 
-    return 0;
+//------------------------------------------
+
+    // if ($nota1["nota"]>$nota2["nota"]){
+    //     return -1;
+    // } else if ($nota1["nota"]<$nota2["nota"]){
+    //     return 1;
+    // }
+
+    // return 0;
 }
 
 usort($notas,"ordenaNotas");
