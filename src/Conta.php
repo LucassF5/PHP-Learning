@@ -4,7 +4,25 @@ class Conta{
     public string $cpfTitular;
     //Pode-se definir o tipo de dado que o atributo irá receber
     public $nomeTitular;
-    public $saldo;
+    public $saldo = 0;
+
+    public function sacar(float $valorASacar){
+        if($valorASacar>$this->saldo){
+            echo "Saldo indisponível";
+        } else {
+            $this->saldo -= $valorASacar;
+            // $this é uma variável que aponta para o objeto que chamou o método
+        }
+    }
+
+    public function depositar($valorADepositar){
+        if($valorADepositar>0){
+            $this->saldo += $valorADepositar;
+        } else {
+            echo "Valor inválido";
+        }
+    
+    }
 }
 
 $primeiraConta = new Conta();
