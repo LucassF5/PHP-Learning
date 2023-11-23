@@ -9,20 +9,35 @@ class Conta{
     public function sacar(float $valorASacar){
         if($valorASacar>$this->saldo){
             echo "Saldo indisponível";
-        } else {
-            $this->saldo -= $valorASacar;
-            // $this é uma variável que aponta para o objeto que chamou o método
         }
+
+         $this->saldo -= $valorASacar;
+        // $this é uma variável que aponta para o objeto que chamou o método
     }
+    //Utilizando Early Return, evita-se o uso de else
 
     public function depositar($valorADepositar){
         if($valorADepositar>0){
             $this->saldo += $valorADepositar;
-        } else {
-            echo "Valor inválido";
-        }
+            return;
+        } 
+
+        echo "Valor inválido";
     
     }
+    //Utilizando Early Return, evita-se o uso de else
+
+    public function transferir(float $valorATransferir, Conta $conta):void 
+    {
+        if($valorATransferir> $this->saldo){
+            echo "Valor indisponível";
+            return;
+        } 
+
+        $this->sacar($valorATransferir);
+        $this->depositar($valorATransferir);
+    }
+    //Utilizando Early Return, evita-se o uso de else
 }
 
 $primeiraConta = new Conta();
