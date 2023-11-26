@@ -6,6 +6,16 @@ class Conta{
     private $nomeTitular;
     private $saldo = 0;
 
+    public function __construct(string $cpfTitular, string $nomeTitular)
+    {
+        echo"Criando nova conta".PHP_EOL;
+        $this->cpfTitular = $cpfTitular;
+        $this->nomeTitular = $nomeTitular;
+        $this->saldo = 0;
+        //O método construtor é executado toda vez que um objeto é instanciado
+    }
+    //Inicializando um método construtor
+
     public function sacar(float $valorASacar){
         if($valorASacar>$this->saldo){
             echo "Saldo indisponível";
@@ -54,15 +64,15 @@ class Conta{
         return $this->nomeTitular;
     }
     
-    public function setNome(string $nome): void
-    {
-        $this->nomeTitular = $nome;
-    }
+    // public function setNome(string $nome): void
+    // {
+    //     $this->nomeTitular = $nome;
+    // }
     
-    public function setCPF(string $cpf): void
-    {
-        $this->cpfTitular = $cpf;
-    }
+    // public function setCPF(string $cpf): void
+    // {
+    //     $this->cpfTitular = $cpf;
+    // }
 
 }
 
