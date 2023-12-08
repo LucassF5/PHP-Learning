@@ -5,16 +5,31 @@ class Conta{
     //Pode-se definir o tipo de dado que o atributo irá receber
     private $nomeTitular;
     private $saldo = 0;
+    private static $numeroDeContas = 0;
+    //Um atributo estático é da classe e não do objeto
 
     public function __construct(string $cpfTitular, string $nomeTitular)
     {
         echo"Criando nova conta".PHP_EOL;
         $this->cpfTitular = $cpfTitular;
+        $this->validaNomeTitular($nomeTitular);
         $this->nomeTitular = $nomeTitular;
         $this->saldo = 0;
+
+        self::$numeroDeContas++;
+        //Usando self para dizer que é desta conta em específico
+        //Utilizando o operador de resolução de escopo para acessar um atributo estático
+        //O operador de resolução de escopo serve para acessar um atributo ou método estático
+
         //O método construtor é executado toda vez que um objeto é instanciado
     }
     //Inicializando um método construtor
+
+    public function __destruct()
+    {
+        self::$numeroDeContas--;
+    }
+    //O método destrutor é executado toda vez que um objeto é destruído
 
     public function sacar(float $valorASacar){
         if($valorASacar>$this->saldo){
@@ -64,29 +79,20 @@ class Conta{
         return $this->nomeTitular;
     }
     
-    // public function setNome(string $nome): void
-    // {
-    //     $this->nomeTitular = $nome;
-    // }
-    
-    // public function setCPF(string $cpf): void
-    // {
-    //     $this->cpfTitular = $cpf;
-    // }
+
+    private function validaNomeTitular(string $nomeTitular)
+    {
+        if(strlen($nomeTitular)<5){
+            echo "Nome precisa ter pelo menos 5 caracteres";
+            exit();
+        }
+    }
+
+    public static function getNumeroDeContas(): int
+    {
+        return self::$numeroDeContas;
+    }
 
 }
-
-// $primeiraConta = new Conta();
-
-// $primeiraConta->saldo = 100;
-// //Para acessar o valor de um atributo, usa-se o operador ->
-// $primeiraConta->cpfTitular = "123.456.789-00";
-// $primeiraConta->nomeTitular = "Lucas Franco";
-
-// var_dump($primeiraConta);
-
-// echo $primeiraConta->nomeTitular.PHP_EOL;
-// echo $primeiraConta->cpfTitular.PHP_EOL;
-// echo $primeiraConta->saldo.PHP_EOL;
 
 ?>

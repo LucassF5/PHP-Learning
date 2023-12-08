@@ -12,5 +12,6 @@ var_dump($primeiraConta);
 echo $primeiraConta->getNome().PHP_EOL;
 echo $primeiraConta->getCPF().PHP_EOL;
 echo $primeiraConta->getSaldo().PHP_EOL;
+echo "O número total de contas é: ".self::getNumeroDeContas().PHP_EOL;
 
 ?>
