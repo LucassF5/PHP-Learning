@@ -1,19 +1,15 @@
 <?php
 
 class Conta{
-    private string $cpfTitular;
-    //Pode-se definir o tipo de dado que o atributo irá receber
-    private $nomeTitular;
+    private $titular;
     private $saldo = 0;
     private static $numeroDeContas = 0;
     //Um atributo estático é da classe e não do objeto
 
-    public function __construct(string $cpfTitular, string $nomeTitular)
+    public function __construct( Titular $titular)
     {
         echo"Criando nova conta".PHP_EOL;
-        $this->cpfTitular = $cpfTitular;
-        $this->validaNomeTitular($nomeTitular);
-        $this->nomeTitular = $nomeTitular;
+        $this->titular = $titular;
         $this->saldo = 0;
 
         self::$numeroDeContas++;
@@ -69,23 +65,14 @@ class Conta{
         return $this->saldo;
     }
 
-    public function getCPF(): string
+    public function getNomeTitular(): string
     {
-        return $this->cpfTitular;
+        return $this->titular->getNome();
     }
 
-    public function getNome(): string
+    public function getCPFTitular(): string
     {
-        return $this->nomeTitular;
-    }
-    
-
-    private function validaNomeTitular(string $nomeTitular)
-    {
-        if(strlen($nomeTitular)<5){
-            echo "Nome precisa ter pelo menos 5 caracteres";
-            exit();
-        }
+        return $this->titular->getCPF();
     }
 
     public static function getNumeroDeContas(): int
